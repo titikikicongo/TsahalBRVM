@@ -226,3 +226,15 @@ print(synthese)
 
 # Optionnel : exporter vers CSV
 # write.csv(synthese, "resultats_backtest.csv", row.names = FALSE)
+
+
+
+# Version optimisée pour analyser les données directement en R
+fetch_ticker_dataframe <- function(ticker, period = "daily") {
+  url <- paste0("https://raw.githubusercontent.com/Fredysessie/brvm-data-public/main/data/", ticker, "/", ticker, ".", period, ".csv")
+  
+  # Télécharge et transforme directement en DataFrame
+  return(readr::read_csv(url)) 
+}
+
+df <- fetch_ticker_dataframe(ticker = "BOAC")
